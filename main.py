@@ -1,22 +1,15 @@
-import time
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+import time
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Edge('/home/ruizdev7/GitHub/Download_Engine/msedgedriver.exe')
 
-webdriver_service = Service("/home/ruizdev7/chromedriver/stable/chromedriver")
+driver.get('https://bing.com')
 
-browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+element = driver.find_element(By.ID, 'sb_form_q')
+element.send_keys('WebDriver')
+element.submit()
 
-browser.get("https://cloudbytes.dev")
-
-description = browser.find_element(By.NAME, "description").get_attribute("content")
-print(f"{description}")
-
-#Wait for 10 seconds
-time.sleep(10)
-browser.quit()
+time.sleep(5)
+driver.quit()
