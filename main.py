@@ -1,15 +1,8 @@
-from selenium import webdriver
-from selenium.webdriver.edge.service import Service
-from selenium.webdriver.common.by import By
-import time
+import core.ngin_core as ngin_core
+ 
+agent = ngin_core.Report_Generator("Harvest Batches")
+agent.logIn()
+agent.locateAnalyticsModule()
+agent.downloadHarvestBatchDetails()
 
-driver = webdriver.Edge('/home/ruizdev7/GitHub/Download_Engine/msedgedriver.exe')
-
-driver.get('https://bing.com')
-
-element = driver.find_element(By.ID, 'sb_form_q')
-element.send_keys('WebDriver')
-element.submit()
-
-time.sleep(5)
-driver.quit()
+print(agent.__rep__)
